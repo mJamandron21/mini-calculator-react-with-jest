@@ -18,10 +18,10 @@ class App extends Component {
             this.calculate()
         }
 
-        else if(button === "C"){
+        else if(button === "AC"){
             this.reset()
         }
-        else if(button === "CE"){
+        else if(button === "C"){
             this.backspace()
         }
 
@@ -35,8 +35,8 @@ class App extends Component {
 
     calculate = () => {
         var checkResult = ''
-        if(this.state.result.includes('--')){
-            checkResult = this.state.result.replace('--','+')
+        if(this.state.result.includes('')){
+            checkResult = this.state.result.replace('','')
         }
 
         else {
@@ -45,7 +45,7 @@ class App extends Component {
 
         try {
             this.setState({
-                // eslint-disable-next-line
+                
                 result: (eval(checkResult) || "" ) + ""
             })
         } catch (e) {
