@@ -23,52 +23,46 @@ test('check if equal button renders', () => {
 
 test('check if divide button renders', () => {
   render(<App />)
-  const button = screen.getByText('÷')
+  const button = screen.getByText('/')
   expect(button).toBeInTheDocument()
 })
 
 test('check if multiply button renders', () => {
   render(<App />)
-  const button = screen.getByText('x')
+  const button = screen.getByText('X')
   expect(button).toBeInTheDocument()
+})
+
+test('check if result initial display is 0', () => {
+  render(<App />)
+  const displayElement = screen.getByTitle('screen')
+  expect(displayElement.innerHTML).toBe('0')
 })
 
 test('check if display is updating upon clicking buttons', () => {
   render(<App />)
-  const button = screen.getByText('0')
-  fireEvent.click(button)
-  const displayElement = screen.getByTitle('result')
-  expect(displayElement.innerHTML).toBe('0')
-})
-
-
-test('check if AC is working', () => {
-  render(<App />)
   const button = screen.getByText('1')
-  const allClearButton = screen.getByText('AC')
   fireEvent.click(button)
-  fireEvent.click(allClearButton)
-  const displayElement = screen.getByTitle('result')
-  expect(displayElement.innerHTML).toBe('')
+  const displayElement = screen.getByTitle('screen')
+  expect(displayElement.innerHTML).toBe('1')
 })
 
-test('check if CE is working', () => {
+
+test('check if C is working', () => {
   render(<App />)
   const button = screen.getByText('1')
   const clearButton = screen.getByText('C')
   fireEvent.click(button)
-  fireEvent.click(button)
   fireEvent.click(clearButton)
-  const displayElement = screen.getByTitle('result')
-  expect(displayElement.innerHTML).toBe('1')
+  const displayElement = screen.getByTitle('screen')
+  expect(displayElement.innerHTML).toBe('0')
 })
 
 test('check if . is working', () => {
   render(<App />)
   const button = screen.getByText('.')
   fireEvent.click(button)
-  const displayElement = screen.getByTitle('result')
-  expect(displayElement.innerHTML).toBe('.')
+  expect(button).toBeInTheDocument()
 })
 //end check components
 
@@ -84,7 +78,7 @@ test('check if addition is working', () => {
   fireEvent.click(add)
   fireEvent.click(buttonNine)
   fireEvent.click(equals)
-  const displayElement = screen.getByTitle('result')
+  const displayElement = screen.getByTitle('screen')
   expect(displayElement.innerHTML).toBe((10).toString())
 })
 
@@ -98,7 +92,7 @@ test('check if subtraction is working', () => {
   fireEvent.click(minus)
   fireEvent.click(buttonNine)
   fireEvent.click(equals)
-  const displayElement = screen.getByTitle('result')
+  const displayElement = screen.getByTitle('screen')
   expect(displayElement.innerHTML).toBe((-8).toString())
 })
 
@@ -115,7 +109,7 @@ test('check if decimal is working', () => {
   fireEvent.click(add)
   fireEvent.click(buttonNine)
   fireEvent.click(equals)
-  const displayElement = screen.getByTitle('result')
+  const displayElement = screen.getByTitle('screen')
   expect(displayElement.innerHTML).toBe((10.9).toString())
 })
 
