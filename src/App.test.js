@@ -96,6 +96,34 @@ test('check if subtraction is working', () => {
   expect(displayElement.innerHTML).toBe((-8).toString())
 })
 
+test('check if multiply is working', () => {
+  render(<App />)
+  const buttonOne = screen.getByText('1')
+  const buttonNine = screen.getByText('9')
+  const times = screen.getByText('X')
+  const equals = screen.getByText('=')
+  fireEvent.click(buttonOne)
+  fireEvent.click(times)
+  fireEvent.click(buttonNine)
+  fireEvent.click(equals)
+  const displayElement = screen.getByTitle('screen')
+  expect(displayElement.innerHTML).toBe((9).toString())
+})
+
+test('check if division is working', () => {
+  render(<App />)
+  const buttonNine = screen.getByText('9')
+  const buttonThree = screen.getByText('3')
+  const divide = screen.getByText('/')
+  const equals = screen.getByText('=')
+  fireEvent.click(buttonNine)
+  fireEvent.click(divide)
+  fireEvent.click(buttonThree)
+  fireEvent.click(equals)
+  const displayElement = screen.getByTitle('screen')
+  expect(displayElement.innerHTML).toBe((3).toString())
+})
+
 test('check if decimal is working', () => {
   render(<App />)
   const buttonOne = screen.getByText('1')
