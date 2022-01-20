@@ -141,4 +141,15 @@ test('check if decimal is working', () => {
   expect(displayElement.innerHTML).toBe((10.9).toString())
 })
 
-//test logic/operations
+test('check if invert is working', () => {
+  render(<App />)
+  const buttonNine = screen.getByText('9')
+  const invert = screen.getByText('+-')
+  const equals = screen.getByText('=')
+  fireEvent.click(buttonNine)
+  fireEvent.click(invert)
+  const displayElement = screen.getByTitle('screen')
+  expect(displayElement.innerHTML).toBe((-9).toString())
+})
+
+//end test logic/operations
